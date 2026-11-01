@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "backend_url": "https://github.com/sp00nznet/ps3recomp.git",
+  "backend_rev": "a6d76c895f77eb30b90a806c830544e61821b77f",
+  "license": "MIT (ps3recomp); RetroRemakes changes are MIT",
+  "note": "RetroRemakes runtime/tool fixes on top of the pinned ps3recomp revision. Contains no game code or data.",
+  "files": [
+    {
+      "path": "libs/filesystem/cellFs.c",
+      "base_sha256": "15a3c420d2f5f81eb687fa0c4de5e5fa24061790d9c328c1405fd8c3c7b9c037",
+      "sha256": "b52b24d73087c9b83b8a26af4a241b2c0036733822d053e830e3470c9315e972"
+    },
+    {
+      "path": "libs/font/cellFont.c",
+      "base_sha256": "07751dfd6ce4dfb47e045efb811cc0c76f22a479a7e927e6df5e4ea373fc036b",
+      "sha256": "e76d497710f9bc1773432cc9fd9dcf3a6e35b85342f9f7b05c57dcd76006bd92"
+    },
+    {
+      "path": "libs/font/cellFont.h",
+      "base_sha256": "408b7e299999ae01687680bdb8c9b7a1a111f0c8ff081b555789348d87b45116",
+      "sha256": "7da99c67d6fa8d7c2a90d595134b0ba256c4bc0ab3203473e09946df5d3d2c89"
+    },
+    {
+      "path": "libs/font/cellFontBridge.c",
+      "base_sha256": null,
+      "sha256": "261c99a6631663fe797fbdb615a423ecf2cdf587d6d745ae8d0c3be62bbe363a"
+    },
+    {
+      "path": "libs/hardware/cellUsbd.c",
+      "base_sha256": "124e65eef6b83a38bf21159e4c48e85e2f5cbea13ae4ec22cfca8e3c474056ea",
+      "sha256": "834cbd5e660417befa0471145eb07d185652997a91c3a4ddfbcb44f02a9f77cf"
+    },
+    {
+      "path": "libs/input/cellKb.c",
+      "base_sha256": "1d0acf256066253f3cc385eb7cc529716ec22dd6e13a5c94714fc21027155306",
+      "sha256": "3e6d402da32cc2e23c55daa5a800e73b7ca772023ab2490b953681516ac5cc2c"
+    },
+    {
+      "path": "libs/input/cellPad.c",
+      "base_sha256": "8d5645f7cbbee90c7a99ff919fb2878a1ab941aa7202970bbdbaf0866181079f",
+      "sha256": "622164236f0ecb2ede2da6d273917298ed2a5a160be60bb6356abedef3833ec2"
+    },
+    {
+      "path": "libs/input/cellPad.h",
+      "base_sha256": "eb8c753609b4dc4c9aa3f1f35299b9895da87cfbc634ded237630e7ea7efd703",
+      "sha256": "563b7408a472305fbd12660d75f913d2bb4946df8e595341266283d4855e5965"
+    },
+    {
+      "path": "libs/input/rr_input_profile.h",
+      "base_sha256": null,
+      "sha256": "bf0a7902eb6d5ea989222aa675bb76fc4605a533a157796b0a48884d3938fd53"
+    },
+    {
+      "path": "libs/network/cellHttp.c",
+      "base_sha256": "366ed9ea5c8354c35800ade6331712043557839282ee351b2a2ad4629ae163e4",
+      "sha256": "0ad7314b5c7dca01eeb265467cf8d4cd06a682a17a9874cd7760b2dde2f10a1e"
+    },
+    {
+      "path": "libs/network/cellNetCtl.c",
+      "base_sha256": "d14f7cf147ac7e09f91fa801badda4a48f4b8875e662d299bb63e3cd1ab7c014",
+      "sha256": "8bd6c49cf62a5e5d7c0d6ff7cdce94f9e62c8fb669b6bc1f471fb41d8df3e0d7"
+    },
+    {
+      "path": "libs/network/sceNp.c",
+      "base_sha256": "4215907cafebdecd3b9bad8339fcc6a13df9a325b55207f30313ca6b437a9aa9",
+      "sha256": "feae74ba9a9c29cb29d48a083394132e6aa69bfd3c4b2960897e9311de184933"
+    },
+    {
+      "path": "libs/spurs/cellSpurs.c",
+      "base_sha256": "e4186fedb573b9e3bf45e5c559cd05a20d88efb1c36aae72913cf8d7f041cf4f",
+      "sha256": "7e981b4b8c4369a683647443602e01906020819491913cdd479a66a8c32364f7"
+    },
+    {
+      "path": "libs/spurs/cellSpurs.h",
+      "base_sha256": "77f29c697d63bbf04d3bdc2f9c0dc3d8d1dd69f94ba6b01b1abde2ab26a777a9",
+      "sha256": "2dc5167dde9d1fd491ab85616889150c04dbc996886b714acdd43973eface941"
+    },
+    {
+      "path": "libs/system/cellGame.c",
+      "base_sha256": "f96191ab37d453cfd00cb1990bec3ed3e8604d6eba98ae823d48bc307c31e894",
+      "sha256": "f054c4976d98c45bdec8a5658e5e2b3695b452239e0254c7489a114ae719f6a2"
+    },
+    {
+      "path": "libs/system/cellMsgDialog.c",
+      "base_sha256": "1b15598ae406491addb434d805e2d6261228eefc3b9017423fcb1f2389ab438e",
+      "sha256": "24fc5ffbf42aa09a2c1d43da52f6526c33403c39134539629638f0acda7d4bff"
+    },
+    {
+      "path": "libs/system/cellMsgDialog.h",
+      "base_sha256": "2b7f735b6624ebdfa4716be086e15e22688fb1b87dd8e4c9ce8a8b9566a877aa",
+      "sha256": "cbf9be739a8ee73a27b081c6022031ad97bd2da7c3df5965bdcca00550de43ae"
+    },
+    {
+      "path": "libs/system/cellSaveData.c",
+      "base_sha256": "8d87c5c0c1525d19aca6e71a4ad6357cb5644d0826b862b61aa07e36771c79aa",
+      "sha256": "5d896a7508a8f066ba92b081110206f1642c6d9f524ad889f0a1e36114cd6509"
+    },
+    {
+      "path": "libs/system/cellSysutil.c",
+      "base_sha256": "badfb6b2cc1f2c19e4abc9a28ccfd2feaa0fed640609cb2d6383368362a7feb7",
+      "sha256": "73331dc7b65a08cc69c106592a059ea4b106f858769005975490d95e7c854798"
+    },
+    {
+      "path": "libs/system/cellSysutilNpEula.c",
+      "base_sha256": "78d60d5fe206c9fa0117106c6308c0d843387ef0d8c211584b3f58eefeba5264",
+      "sha256": "1b529119f8552689b2e560f99706885d090335d5eb158571a1f6e399d84894f6"
+    },
+    {
+      "path": "libs/system/rrSysLibcBridge.c",
+      "base_sha256": null,
+      "sha256": "08e2259e3e2419ec67a49f504c1ef57964cbd3f9c7e6565e61fd15519d77f410"
+    },
+    {
+      "path": "libs/system/sysPrxForUser.c",
+      "base_sha256": "324cc919c7e7dfb1c724a27ea5c91f9a65a0672191f142c73619a06ed6028302",
+      "sha256": "a4b0afb1419474a8fb65321d351f3f872e7efd72368370a3736548a9e95bb7c0"
+    },
+    {
+      "path": "libs/system/syscache_host.h",
+      "base_sha256": null,
+      "sha256": "c49a27eeec8ae9ff61e3d1ff40da9d71285642ffd8b90d8cecde02dc8c23c219"
+    },
+    {
+      "path": "libs/video/cellGcmSys.c",
+      "base_sha256": "c90de7e5f6b9d76ee4c75e24b2764c9e3dbbb821f03a1ad545099b92068cd0aa",
+      "sha256": "9b5df1123d42d0ccd4618155d3cd65fff18869e3ee6d84f0859af38c99fc8092"
+    },
+    {
+      "path": "libs/video/cellGcmSys.h",
+      "base_sha256": "b348d7345de7743560daccce1c252bd17b3016ca9feb77c80146816669a2b5ae",
+      "sha256": "1fd7cfd7ec77b4a2bd996f44e59342a3c3751275609954e6cc4d54510b4cdfe6"
+    },
+    {
+      "path": "libs/video/rr_display_options.h",
+      "base_sha256": null,
+      "sha256": "b3450327486f804cbcc57c25bdd13d1d9a938ae65ec744429ee88666e6901193"
+    },
+    {
+      "path": "libs/video/rr_post_pass.h",
+      "base_sha256": null,
+      "sha256": "ceb419753a13ed43b9f30cc652ff228572a1616168015d71f400c56bd116ee12"
+    },
+    {
+      "path": "libs/video/rr_shader_cache.h",
+      "base_sha256": null,
+      "sha256": "18b4e75a17ea76f5ef9048e6a660e5078042b4e1fd6f9a7ca09821184126b0ef"
+    },
+    {
+      "path": "libs/video/rr_textures.h",
+      "base_sha256": null,
+      "sha256": "63acd933315a0547147842c49fbad04b66bbbb9ed27d3dd6801eae6efa27fe0a"
+    },
+    {
+      "path": "libs/video/rsx_d3d12_backend.c",
+      "base_sha256": "1a9cdcee739edfd64c39082055a9962593c3485338075a7abc500d8f29f0c180",
+      "sha256": "978eca4d150abd0a39540baac08cb6db822bf3d1993f5d829ca77c609596c384"
+    },
+    {
+      "path": "libs/video/rsx_present_metrics.h",
+      "base_sha256": null,
+      "sha256": "41730bfe7fdb497225e987af93aeda47d94d21e0649acecfc6deea47e9b73feb"
+    },
+    {
+      "path": "runtime/ppu/ppu_fs.cpp",
+      "base_sha256": "c992b2dd0946b3c9e0fc501061c9c4505f15b6a079ac116c19637d13e011186a",
+      "sha256": "b0d455da73c340adff862d988499070e062754fbe039ce732c42cea98e377eb8"
+    },
+    {
+      "path": "runtime/ppu/ppu_hle.cpp",
+      "base_sha256": "7e935f86d7c731865d12b52ce7c1074f4578fa2b4e1e7877855222899563055a",
+      "sha256": "f48a1610f49fc2be20e2794895a05dcfafec732d91ae42dfc95377a190289be5"
+    },
+    {
+      "path": "runtime/ppu/ppu_loader.cpp",
+      "base_sha256": "1e51319c67c15104b294fcf651d488e81ba92db03c5fe0a563c2393461df4eb0",
+      "sha256": "2cd5eb73302cada91c80de1ee149d689eba17d83202732356c3c9a176f33d905"
+    },
+    {
+      "path": "runtime/prx/rr_game_prx.c",
+      "base_sha256": null,
+      "sha256": "e319af889f17cac5a55c039e069169dcb7742170b18a527f83a5011cacdad2f7"
+    },
+    {
+      "path": "runtime/spu/rr_spu_snapshot.c",
+      "base_sha256": null,
+      "sha256": "7e95d88521394d94df4c0c673f74f6fa9a6e819300ec29dad71cf38f4d39554a"
+    },
+    {
+      "path": "runtime/spu/rr_spu_snapshot.h",
+      "base_sha256": null,
+      "sha256": "a3d94a9ba54bb169be005262882e71dbec444593f217bb80c2f9c1f690988893"
+    },
+    {
+      "path": "runtime/spu/spu_channels.c",
+      "base_sha256": "fa4c884505447327806a99705beae4f071705e6aa9e6a3160e3f1abae44b9afb",
+      "sha256": "c4c6fcbcb75929fec269ab9427b783af65932a5bc287be31d11443e52b51d8c1"
+    },
+    {
+      "path": "runtime/spu/spu_dma.h",
+      "base_sha256": "3c8d35fb99a046ee6bcb6c87fbe85765f1b8404439cb48491b9f47b71fd4bb2e",
+      "sha256": "b0c3263f3e016a827316de74eb3b3b64080ec518cae082444e92902643912cfe"
+    },
+    {
+      "path": "runtime/spu/spu_host_failure.h",
+      "base_sha256": null,
+      "sha256": "c08af613f2079f9802589f24399c101263518f0f923918dfb8398a7a6340365c"
+    },
+    {
+      "path": "runtime/spu/spu_idle_poll.h",
+      "base_sha256": null,
+      "sha256": "e4ac0c0b7d9646f2d337c72fc22deec57d1d38322bda1b887be089014c40c0d5"
+    },
+    {
+      "path": "runtime/spu/spu_interp.c",
+      "base_sha256": "db5811f7155eaa508315676b8ade7126b633f614a553308169a2e7aef33a4983",
+      "sha256": "52fa23d710f23afd64c452a60724b4ad93f24356de8c2c921328b7e2c089673b"
+    },
+    {
+      "path": "runtime/spu/spu_lifted_job.h",
+      "base_sha256": "29e2d3932f3fa3bdf38c175fc3b083dfb8095f27fbc860eb47d4b99023a45f30",
+      "sha256": "2299a308de056656a1774fc63b019791914a2df4b77dfc258391ceb407090b13"
+    },
+    {
+      "path": "runtime/spu/spu_workload.c",
+      "base_sha256": "2150225f937332e16137041fa088dd3748cf40d8d5d198de918e2fe31f647c8a",
+      "sha256": "205c223adb46e0cf5c8b1dc2b19acc2e7e53a92cf0552a618a64c67102d39cf4"
+    },
+    {
+      "path": "runtime/syscalls/lv2_register.c",
+      "base_sha256": "c72613165ad1593a7bcc84b43c587484cb6d1d6469ce4cb513986ba158c4e5c6",
+      "sha256": "de26695bed56dbd8bc1ccbdbcc90e804885f178664b470c062a88e5186df71fa"
+    },
+    {
+      "path": "runtime/syscalls/sys_fs.c",
+      "base_sha256": "208c400d963d2883b5597847e17058d584d6279d4ebb0e4de7201781eeec68ef",
+      "sha256": "fc10be821043247a646fcdb400ed1af895dad82db196738c069f325b98585dcc"
+    },
+    {
+      "path": "runtime/syscalls/sys_memory.c",
+      "base_sha256": "f5503e90a57e7521cd6d91101c1e7f1caaf62b65cfb29eaa552a8cc5cd56d159",
+      "sha256": "12f10eac4800b43b90e96b94e39f1d52f6199dd16d4325ed7714a712b24ef262"
+    },
+    {
+      "path": "runtime/syscalls/sys_timer.c",
+      "base_sha256": "5a1976ccce74c583fd43bb8c7d6c911dc93e33aa029e28587bce7de0113cad50",
+      "sha256": "2dc674fcb597c59bc1423acbe9accb190a5063626bf6a9d8391a4a2a2dadb76c"
+    },
+    {
+      "path": "templates/project/main.cpp",
+      "base_sha256": "d1c39c96c033c7388ab8b07a8557fa4b436f9dcfc3c1416b15e322cd55d99145",
+      "sha256": "62323964b7797c38c52e397c05a7a36bb52828672b7b119d7164f12bdc920c7b"
+    },
+    {
+      "path": "tools/build_spu_workloads.py",
+      "base_sha256": "de2952c50b50f4c8681a1866ecb3288ca84b1fd22c3b9e9a12f2cdaf282f8c24",
+      "sha256": "06d2bfcc93f7f8a9385b0bc8a300df159ecd0a34e0acb17652ccd678fbc04acd"
+    },
+    {
+      "path": "tools/find_spu_functions.py",
+      "base_sha256": "bc2aaf1d93217b7ce5c2976827a876b4c63443ca864cd78e6c4f367ee11a9f2e",
+      "sha256": "4383b38a00104fd2b0a93baf372ef458bd13212e1accdfcda21e2b840d1e513f"
+    },
+    {
+      "path": "tools/gen_hle_nids.py",
+      "base_sha256": "13bd9d45bc43de32205da72f87ae25748705983a6b5c89e2a0cd94414ddfa76a",
+      "sha256": "cff4610abd12644cb105e6d79bd192450d1990524d251ef59d02198800657811"
+    },
+    {
+      "path": "tools/ppu_lifter.py",
+      "base_sha256": "541f57f0e8c6cecafe9b0520dd7c65bdf9ec67823a19a0470e188642d91956d2",
+      "sha256": "9440ce8e3a96e2df34d52f1c57b5c9bf36119e62201e80c3e8e36a26abaedcb5"
+    },
+    {
+      "path": "tools/spu_program_pipeline.py",
+      "base_sha256": "3af5f5ea37e7bd60584f62d12173b526a63905dd8cf67cd5387f1a83291db983",
+      "sha256": "8d380549f4b781b548e02ab5046656783fa0f5ce7a19799584d30ab8692268eb"
+    },
+    {
+      "path": "tools/test_spu_multisegment.py",
+      "base_sha256": null,
+      "sha256": "e0d67695394bc5142fffa341997a5c87cff607d5ab33a11532506cff014900d4"
+    },
+    {
+      "path": "tools/test_spu_program_pipeline.py",
+      "base_sha256": "97615740facd7fc543b2e96fcfa92ee74085836b3de1e59a4c28da7761c99905",
+      "sha256": "938636f8f2965851979bcd960d315461023b119b5c682203fa3d6628c74f5430"
+    }
+  ]
+}

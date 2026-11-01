@@ -1,0 +1,24 @@
+# Player data and builds never go to GitHub
+workspace/
+.studio-updates/
+__pycache__/
+*.pyc
+*.log
+*.bak
+*.before-*
+
+# Game and system files
+*.elf
+*.self
+*.sprx
+*.prx
+*.bin
+*.pup
+*.PUP
+*.pkg
+*.rap
+*.edat
+*.sdat
+*.iso
+dev_flash/
+cartridge/

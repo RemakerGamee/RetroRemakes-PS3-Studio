@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "about": "Version each game should be at for the Studio's ports. Only verified entries. Each title id maps to: version (APP_VER, XX.YY), source (project or Studio component that needs it), url (where it is documented, may be empty), reason (why). Entries here win over upstream port routes and over the versions named in the player's patch files.",
+  "titles": {
+    "BCUS98155": {
+      "version": "01.00",
+      "source": "studio.wws_policy_recipes",
+      "url": "",
+      "reason": "MotorStorm: Pacific Rift policy-module recipe and all repairs so far are built for the disc 01.00 EBOOT; an update EBOOT would not match the recipe"
+    }
+  }
+}

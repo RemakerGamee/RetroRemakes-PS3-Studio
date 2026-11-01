@@ -1,0 +1,376 @@
+{
+  "research_date": "2026-10-21",
+  "coverage": "Targeted multi-pass search across PS3 native recompilation, emulation, PPU/SPU analysis, RSX/shaders, assets, audio and validation. Not a claim to exhaust the internet.",
+  "tools": [
+    {
+      "name": "ps3recomp",
+      "category": "Native compilation",
+      "support": "Integrated pipeline",
+      "url": "https://github.com/sp00nznet/ps3recomp",
+      "purpose": "PPU lifting, SPU discovery/lifting, host runtime and per-title CMake template.",
+      "limits": "Experimental; generated code and successful compilation do not establish gameplay correctness.",
+      "repository_license_metadata": "MIT",
+      "archived": false
+    },
+    {
+      "name": "RPCS3",
+      "category": "Reference testing",
+      "support": "Launch adapter",
+      "url": "https://rpcs3.net/quickstart",
+      "purpose": "Reference emulator and debugger for comparing the original game against a native attempt.",
+      "limits": "Requires separate installation and setup; emulation is not a produced native port."
+    },
+    {
+      "name": "RPCS3 source",
+      "category": "CPU / HLE / RSX",
+      "support": "Research reference",
+      "url": "https://github.com/RPCS3/rpcs3",
+      "purpose": "Implementation reference for PPU, SPU, system calls and RSX behavior.",
+      "limits": "Separate codebase and license; source is not copied or automatically merged into this Studio.",
+      "repository_license_metadata": "GPL-2.0",
+      "archived": false
+    },
+    {
+      "name": "RSX debugger",
+      "category": "GPU debugging",
+      "support": "External tool",
+      "url": "https://github.com/RPCS3/rsx-debugger",
+      "purpose": "Specialist RPCS3 RSX debugging application.",
+      "limits": "Check compatibility with current RPCS3 dumps and builds."
+    },
+    {
+      "name": "rsxrecomp",
+      "category": "GPU shader translation",
+      "support": "Research candidate",
+      "url": "https://github.com/TalhaMudo/rsxrecomp",
+      "purpose": "Standalone RSX vertex/fragment microcode to HLSL translation project.",
+      "limits": "Experimental alternative to the integrated backend shader path; not a complete renderer."
+    },
+    {
+      "name": "Ghidra",
+      "category": "Reverse engineering",
+      "support": "External tool",
+      "url": "https://github.com/NationalSecurityAgency/ghidra",
+      "purpose": "Disassembly, decompilation and manual investigation of unresolved code.",
+      "limits": "Decompiler pseudocode needs engineering and validation before it can become a working port."
+    },
+    {
+      "name": "Ps3GhidraScripts",
+      "category": "PPU analysis",
+      "support": "External extension",
+      "url": "https://github.com/clienthax/Ps3GhidraScripts",
+      "purpose": "PS3 binary and ABI analysis scripts for Ghidra.",
+      "limits": "Upstream notes relocation limitations; use a compatible Ghidra release.",
+      "repository_license_metadata": null,
+      "archived": false
+    },
+    {
+      "name": "GhidraSPU",
+      "category": "SPU analysis",
+      "support": "External extension",
+      "url": "https://github.com/aerosoul94/GhidraSPU",
+      "purpose": "SPU processor support for Ghidra.",
+      "limits": "Work in progress; validate decoded instructions and extension compatibility.",
+      "repository_license_metadata": "Apache-2.0",
+      "archived": false
+    },
+    {
+      "name": "ps3ida",
+      "category": "Reverse engineering",
+      "support": "External extension",
+      "url": "https://github.com/kakaroto/ps3ida",
+      "purpose": "PS3-specific IDA scripts and plugins.",
+      "limits": "Separate IDA installation required; scripts may need adaptation to modern IDA."
+    },
+    {
+      "name": "Capstone",
+      "category": "CPU disassembly",
+      "support": "Backend dependency",
+      "url": "https://github.com/capstone-engine/capstone",
+      "purpose": "PowerPC disassembly support used in analysis workflows.",
+      "limits": "Disassembly alone does not implement SPU jobs, system calls or graphics."
+    },
+    {
+      "name": "ps3emu",
+      "category": "Alternative architecture",
+      "support": "Research reference",
+      "url": "https://rcebits.com/ps3emu/",
+      "purpose": "PPU/SPU rewriting, RSX OpenGL and trace/debugging architecture for Linux.",
+      "limits": "Upstream labels it work in progress and not practical yet; not an automatic fallback.",
+      "repository_license_metadata": null,
+      "archived": null
+    },
+    {
+      "name": "ChonkyStation3",
+      "category": "Alternative emulator",
+      "support": "Research reference",
+      "url": "https://github.com/liuk7071/ChonkyStation3",
+      "purpose": "Another PS3 emulation implementation for comparison and research.",
+      "limits": "An emulator, not a native static port generator; compatibility differs.",
+      "repository_license_metadata": "GPL-3.0",
+      "archived": false
+    },
+    {
+      "name": "PSL1GHT",
+      "category": "Homebrew / reference",
+      "support": "External SDK",
+      "url": "https://github.com/ps3dev/PSL1GHT",
+      "purpose": "Open PS3 homebrew SDK, API headers and samples for controlled test programs.",
+      "limits": "Builds software for PS3; it does not directly translate retail games to PC.",
+      "repository_license_metadata": "MIT",
+      "archived": false
+    },
+    {
+      "name": "ps3toolchain",
+      "category": "Homebrew / reference",
+      "support": "External toolchain",
+      "url": "https://github.com/ps3dev/ps3toolchain",
+      "purpose": "Open toolchain for compiling PPU/SPU test programs.",
+      "limits": "Targets PS3 rather than the host PC and is not a generic retail-game porter.",
+      "repository_license_metadata": "BSD-2-Clause",
+      "archived": false
+    },
+    {
+      "name": "PS3 autotests",
+      "category": "Validation",
+      "support": "External test suite",
+      "url": "https://github.com/RPCS3/ps3autotests",
+      "purpose": "Small programs and expected outputs to investigate PS3 behavior.",
+      "limits": "Individual tests and toolchains require setup; not a commercial-game compatibility guarantee.",
+      "repository_license_metadata": "GPL-2.0",
+      "archived": false
+    },
+    {
+      "name": "RenderDoc",
+      "category": "GPU debugging",
+      "support": "External tool",
+      "url": "https://github.com/baldurk/renderdoc",
+      "purpose": "Inspect supported host graphics API captures, draw calls and resources.",
+      "limits": "Captures the host renderer, not a raw RSX instruction stream; integration compatibility varies."
+    },
+    {
+      "name": "SPIRV-Cross",
+      "category": "GPU shader tools",
+      "support": "External library",
+      "url": "https://github.com/KhronosGroup/SPIRV-Cross",
+      "purpose": "Reflect and translate SPIR-V into higher-level shader languages.",
+      "limits": "Needs SPIR-V input; not a direct RSX decoder.",
+      "repository_license_metadata": "Apache-2.0",
+      "archived": false
+    },
+    {
+      "name": "SPIRV-Tools",
+      "category": "GPU shader tools",
+      "support": "External toolkit",
+      "url": "https://github.com/KhronosGroup/SPIRV-Tools",
+      "purpose": "Validate, disassemble and optimize generated SPIR-V.",
+      "limits": "Validation cannot establish visual equivalence to the PS3 shader.",
+      "repository_license_metadata": "Apache-2.0",
+      "archived": false
+    },
+    {
+      "name": "glslang",
+      "category": "GPU shader tools",
+      "support": "Backend optional dependency",
+      "url": "https://github.com/KhronosGroup/glslang",
+      "purpose": "Shader front end and SPIR-V generation used by graphics workflows.",
+      "limits": "Install matching CMake packages when required by the selected graphics backend.",
+      "repository_license_metadata": "NOASSERTION",
+      "archived": false
+    },
+    {
+      "name": "Radeon GPU Profiler",
+      "category": "Performance",
+      "support": "External tool",
+      "url": "https://github.com/GPUOpen-Tools/radeon_gpu_profiler",
+      "purpose": "Inspect GPU workload timing on supported AMD hardware and drivers.",
+      "limits": "Hardware/API requirements apply; not a PS3 shader translator."
+    },
+    {
+      "name": "Tracy",
+      "category": "Performance",
+      "support": "External library/tool",
+      "url": "https://github.com/wolfpld/tracy",
+      "purpose": "CPU/GPU profiling for instrumented native ports.",
+      "limits": "Requires instrumentation in the target port.",
+      "repository_license_metadata": "NOASSERTION",
+      "archived": false
+    },
+    {
+      "name": "Fossilize",
+      "category": "GPU cache investigation",
+      "support": "Research reference",
+      "url": "https://github.com/ValveSoftware/Fossilize",
+      "purpose": "Serialize and replay Vulkan pipeline objects for specialized shader/cache work.",
+      "limits": "Useful only with a compatible Vulkan integration; not an RSX replacement.",
+      "repository_license_metadata": "MIT",
+      "archived": false
+    },
+    {
+      "name": "DirectXTex",
+      "category": "Texture processing",
+      "support": "External tool",
+      "url": "https://github.com/microsoft/DirectXTex",
+      "purpose": "DDS conversion, texture processing and mipmap generation.",
+      "limits": "Original archive decoding, swizzling and reinsertion remain game specific."
+    },
+    {
+      "name": "Compressonator",
+      "category": "Texture processing",
+      "support": "External tool",
+      "url": "https://github.com/GPUOpen-Tools/compressonator",
+      "purpose": "Texture compression and quality analysis.",
+      "limits": "Requires decoded textures and a port that supports the chosen texture format.",
+      "repository_license_metadata": null,
+      "archived": false
+    },
+    {
+      "name": "GtfDdsSharp",
+      "category": "PS3 texture conversion",
+      "support": "Research candidate",
+      "url": "https://udaya-x2.github.io/GtfDdsSharp/",
+      "purpose": "Convert supported GTF and DDS textures.",
+      "limits": "Upstream describes SDK-derived origins; review provenance and licensing before redistribution. Not bundled.",
+      "repository_license_metadata": null,
+      "archived": null
+    },
+    {
+      "name": "CTXR Converter",
+      "category": "PS3 texture conversion",
+      "support": "External specialist tool",
+      "url": "https://github.com/316austin316/CTXR-Converter",
+      "purpose": "Convert supported CTXR texture variants, including a PS3-specific module.",
+      "limits": "Format/version specific; not universal PS3 texture extraction.",
+      "repository_license_metadata": null,
+      "archived": false
+    },
+    {
+      "name": "Noesis",
+      "category": "Asset investigation",
+      "support": "External tool",
+      "url": "https://richwhitehouse.com/index.php?content=inc_projects.php&showproject=91",
+      "purpose": "Preview and convert supported asset formats with relevant plugins.",
+      "limits": "Coverage depends on exact game format and plugin; manual workflow.",
+      "repository_license_metadata": null,
+      "archived": null
+    },
+    {
+      "name": "QuickBMS",
+      "category": "Archive extraction",
+      "support": "External tool",
+      "url": "https://aluigi.altervista.org/quickbms.htm",
+      "purpose": "Script-driven extraction of supported game archive formats.",
+      "limits": "Needs a matching archive script; repacking and asset loading are separate problems."
+    },
+    {
+      "name": "vgmstream",
+      "category": "Audio investigation",
+      "support": "External tool",
+      "url": "https://github.com/vgmstream/vgmstream",
+      "purpose": "Decode supported streamed game audio formats for inspection.",
+      "limits": "Codec/container support is format specific; not a runtime audio-system replacement."
+    },
+    {
+      "name": "FFmpeg",
+      "category": "Audio / video",
+      "support": "External tool / optional backend dependency",
+      "url": "https://github.com/FFmpeg/FFmpeg",
+      "purpose": "Decode or inspect supported audio/video formats.",
+      "limits": "Respect build-specific licensing; PS3 media containers and synchronization may need additional work.",
+      "repository_license_metadata": "NOASSERTION",
+      "archived": false
+    },
+    {
+      "name": "Real-ESRGAN",
+      "category": "Texture enhancement",
+      "support": "External tool",
+      "url": "https://github.com/xinntao/Real-ESRGAN",
+      "purpose": "Upscale decoded images for optional texture experiments.",
+      "limits": "Must preserve alpha, tiling, normal maps and mip behavior; no automatic in-game texture replacement."
+    },
+    {
+      "name": "flOw port",
+      "category": "Porting case study",
+      "support": "Research reference",
+      "url": "https://github.com/sp00nznet/flow",
+      "purpose": "A title-specific ps3recomp project to study structure and fixes.",
+      "limits": "Its patches and support do not automatically apply to another game."
+    },
+    {
+      "name": "You Don't Know Jack port",
+      "category": "Porting case study",
+      "support": "Research reference",
+      "url": "https://github.com/sp00nznet/youdontknowjack",
+      "purpose": "A title-specific PS3 recompilation project for studying bring-up work.",
+      "limits": "Upstream progress claims are not a Studio gameplay verification.",
+      "repository_license_metadata": "MIT",
+      "archived": false
+    },
+    {
+      "name": "inFAMOUS 2 recomp",
+      "category": "Porting case study",
+      "support": "Research reference",
+      "url": "https://github.com/juans-collab/infamous-2-recomp",
+      "purpose": "Experimental title project for studying unresolved runtime/graphics issues.",
+      "limits": "Upstream explicitly describes this project as not playable."
+    },
+    {
+      "name": "Drakengard 3 recomp",
+      "category": "Porting case study",
+      "support": "Research reference",
+      "url": "https://github.com/soyjxck/dod3-recomp",
+      "purpose": "Another title-specific ps3recomp project and integration example.",
+      "limits": "Game-specific patches; not a general compatibility promise.",
+      "repository_license_metadata": "NOASSERTION",
+      "archived": false
+    },
+    {
+      "name": "ps3recomp build guide",
+      "category": "Build prerequisites",
+      "support": "Official documentation",
+      "url": "https://github.com/sp00nznet/ps3recomp/blob/master/docs/BUILDING.md",
+      "purpose": "Compiler and graphics-backend requirements.",
+      "limits": "Documentation and implementation can evolve; Studio records the exact checkout revision.",
+      "repository_license_metadata": "MIT",
+      "archived": false
+    },
+    {
+      "name": "ps3recomp porting guide",
+      "category": "Porting workflow",
+      "support": "Official documentation",
+      "url": "https://github.com/sp00nznet/ps3recomp/blob/master/docs/GAME_PORTING_GUIDE.md",
+      "purpose": "Background for diagnosing game-specific bring-up issues.",
+      "limits": "Some example commands in older prose differ from current tools; Studio adapters follow inspected source."
+    },
+    {
+      "name": "ps3recomp tools reference",
+      "category": "Pipeline reference",
+      "support": "Official documentation",
+      "url": "https://github.com/sp00nznet/ps3recomp/blob/master/docs/TOOLS.md",
+      "purpose": "Loader, lifter, imports and function-analysis command reference.",
+      "limits": "Backend revisions may change command interfaces.",
+      "repository_license_metadata": "MIT",
+      "archived": false
+    },
+    {
+      "name": "Project Pyrrhus (Killzone 2 PC port)",
+      "category": "Per-title native port reference",
+      "support": "External reference; same ps3recomp backend",
+      "url": "https://github.com/undecuple/project-pyrrhus",
+      "purpose": "Killzone 2 (PS3) static recompilation to Windows x64 on ps3recomp v0.18.0 plus its own patch set (port/patches/). Built on your PC from your own disc dump (folder or decrypted ISO), the 1.29 update and your decrypted EBOOT. Direct3D 12 renderer; SPU scheduling, DMA and PS3 memory layout reproduced. Reference for this Studio's Killzone 2 recipe (WWS policy module) and runtime fixes; The Killzone Trilogy disc also contains Killzone 2.",
+      "limits": "Work in progress, partly playable (about 23 fps in its scripted test). Targets update 1.29 only. Commit 4771777 (2026-10-29) checked.",
+      "repository_license_metadata": "MIT",
+      "archived": false
+    },
+    {
+      "name": "Project Helghast (Killzone 3 PC port)",
+      "category": "Per-title native port reference",
+      "support": "External reference; same ps3recomp backend",
+      "url": "https://github.com/undecuple/project-helghast",
+      "purpose": "Killzone 3 (PS3) static recompilation of PPU and Cell SPU code to Windows x64, built on your PC from your own disc dump (PS3_GAME folder or decrypted ISO), the 1.14 update and your decrypted EBOOT; installer builds in about 7 minutes. Boot, menus, all nine chapters load; XInput/SDL3 input; PS3-format saves. The Killzone Trilogy disc also contains Killzone 3.",
+      "limits": "Pre-release (v0.1.5), partly playable. Built for update 1.14 only. Commit f2bfeed (2026-10-28) checked.",
+      "repository_license_metadata": "MIT",
+      "archived": false
+    }
+  ]
+}
