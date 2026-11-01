@@ -18,7 +18,7 @@ REPO_URL = 'https://github.com/RemakerGamee/RetroRemakes-PS3-Studio'
 CHANNEL_URL = REPO_URL + '/releases/latest/download/ps3-studio.json'
 MAX_PACKAGE = 20 * 1024 * 1024
 TOP_FILES = {'README.md','RESEARCH.md','REQUIREMENTS.md','LICENSE.txt','LICENSE-GPL-2.0.txt','NOTICE.md','START-STUDIO.bat',
-             'bootstrap.py','update_engine.py','tool-catalog.json','ONLINE-UPDATES.md','Install-Requirements.bat'}
+             'bootstrap.py','update_engine.py','tool-catalog.json','ONLINE-UPDATES.md','Install-Requirements.bat','PATCH-PACKS.md'}
 
 
 def version(value):

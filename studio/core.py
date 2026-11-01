@@ -952,6 +952,13 @@ class Studio:
         report_progress(emit,'prepare','start')
         backend = Path(self.state["settings"]["backend"]).expanduser().resolve()
         trial = p.get("backend_override")   # per-game backend trial (auto loop)
+        from . import patch_packs
+        pack = None if trial else patch_packs.for_project(self, p, report)
+        if pack:
+            emit(f"Using patch pack: {pack['name']} {pack['version']}".rstrip())
+            own = patch_packs.prepare_backend(self, pack, emit, cancel)
+            if own:
+                trial = str(own)
         if trial and Path(trial).is_dir():
             backend = Path(trial).expanduser().resolve()
             emit(f"Using trial backend for this game: {backend.name}")
@@ -983,7 +990,8 @@ class Studio:
             write_json(attempt / "history" / (stamp + ".json"), prior)
         runner = Runner(log_dir, emit, cancel)
         manifest = {"studio": VERSION, "input": report["input"], "input_sha256": report["sha256"],
-                    "backend": self.provenance(backend), "status": "building", "playability": "unverified"}
+                    "backend": self.provenance(backend), "status": "building", "playability": "unverified",
+                    "patch_pack": patch_packs.summary(pack)}
         write_json(attempt / "build-report.json", manifest)
         try:
             py, elf = self.backend_python(), Path(report["input"])
@@ -1145,6 +1153,8 @@ class Studio:
             if stop_after == "lift":
                 manifest["status"], p["status"] = "sources generated", "sources generated"
                 return manifest
+            if pack and not reuse:
+                patch_packs.apply_project(pack, port, emit)
             for tool in ("cmake", "ninja"):
                 if not shutil.which(tool):
                     raise RuntimeError(f"Missing {tool}. Generated sources retained; install build prerequisites and retry.")
@@ -1488,6 +1498,9 @@ class Studio:
             if diagnostics:
                 diagnostics["data_directories"] = dict(data_directories)
             env["PS3_VFS_ROOT"] = str(self.vfs_root_for(p, elf))
+            if native:
+                from . import patch_packs
+                env.update(patch_packs.launch_env(self, p))
             # Upstream port routes record the folders their port reads (disc root, update USRDIR).
             for key, value in (build_report.get("upstream_launch_env") or {}).items():
                 if re.fullmatch(r"[A-Z0-9_]{1,64}", str(key)) and isinstance(value, str):

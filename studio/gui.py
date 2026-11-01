@@ -10,6 +10,7 @@ from pathlib import Path
 import queue
 import subprocess
 import threading
+import time
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 import webbrowser
@@ -113,6 +114,9 @@ class App(tk.Tk):
         from .fix_assistant_ui import FixAssistantPanel
         self.fix_assistant=FixAssistantPanel(self.frame("Fix assistant"),self)
         self.fix_assistant.pack(fill="both",expand=True)
+        from .patch_packs_ui import PatchPacksPanel
+        self.patch_packs=PatchPacksPanel(self.frame("Patch packs"),self)
+        self.patch_packs.pack(fill="both",expand=True)
         from .cartridge_bridge.ui import CartridgePanel
         self.cartridge_panel=CartridgePanel(self.tabs,'ps3',self)
         self.refresh()
@@ -1683,6 +1687,8 @@ class App(tk.Tk):
             self.fix_status.set('A selected-game fix is already running; wait for it or use Stop fixes.');return
         self.single_fix_busy=True
         self.single_fix_cancel=threading.Event()
+        # "Apply fixes to games" skips every game listed here.
+        self._single_fix_ids={p.get('id') for p in projects}
         names=', '.join(p.get('name','?') for p in projects)
         self.fix_status.set('Selected game fix started: '+names)
         def run():
@@ -1695,6 +1701,11 @@ class App(tk.Tk):
                     def emit(message,_name=name):self.events.put(('fix_status',f'[selected] {_name}: {message}'))
                     emit.repair_progress=lambda value:self.events.put(('repair_progress_selected',value))
                     self._single_fix_pid=p.get('id')
+                    if getattr(self,'_all_fix_pid',None)==p.get('id'):
+                        emit('waiting: "Apply fixes to games" is building this game right now')
+                        while self.fix_busy and getattr(self,'_all_fix_pid',None)==p.get('id') and not self.single_fix_cancel.is_set():
+                            time.sleep(2)
+                        if self.single_fix_cancel.is_set():break
                     try:plan=game_fixes.preview(self.studio,p,force=True)
                     except Exception as error:plan={'available':False,'reason':str(error)}
                     if not plan.get('available'):
@@ -1709,6 +1720,7 @@ class App(tk.Tk):
                 if failed:msg+=f" Not fixed: {'; '.join(failed)}."
                 self.events.put(('single_fix_done',msg))
             except Exception as error:self.events.put(('single_fix_done','Selected game fix failed: '+str(error)))
+            finally:self._single_fix_ids=set()
         self.single_fix_worker=threading.Thread(target=run,daemon=True)
         self.single_fix_worker.start()
 
@@ -1745,6 +1757,9 @@ class App(tk.Tk):
                 for i,plan in enumerate(plans,1):
                     if self.fix_cancel.is_set():break
                     name=plan['project'].get('name','?')
+                    if plan.get('project_id') in getattr(self,'_single_fix_ids',set()):
+                        emit(f'[{i}/{len(plans)}] {name}: skipped - "Apply fixes to selected game" is handling it')
+                        continue
                     self._all_fix_pid=plan.get('project_id');self._all_fix_count=(i-1,len(plans))
                     def emit_game(message,_i=i,_n=len(plans),_name=name):
                         self.events.put(('fix_status_all',f'[{_i}/{_n}] {_name}: {message}'))

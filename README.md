@@ -1,4 +1,4 @@
-# RetroRemakes PS3 Studio (Public Edition) v0.1.2
+# RetroRemakes PS3 Studio (Public Edition)
 
 **RetroRemakes PS3 Studio is a RetroRemakes product. Copyright (c) 2026 RetroRemakes.**
 
@@ -48,6 +48,12 @@ Open the **Fix assistant** tab, pick a game and press **Diagnose**. You will see
 - Press **Rebuild with this fix** and test again.
 
 You can switch between the two modes at any time.
+
+## Patch packs (game-specific fix sets)
+
+Some games need many fixes to ps3recomp itself (a port's folder of numbered patches, for example). Install them as a **patch pack** in the **Patch packs** tab: matching games then build against their own patched copy of the recompiler, and other games are not affected. You can also turn a folder of `.patch` files into a pack in a few clicks.
+
+**Community library:** the Studio keeps a library of packs shared by other players in sync automatically, installs the ones for your games and keeps them up to date. Use **Share selected pack…** to add yours to https://github.com/RemakerGamee/PS3-Studio-Packs, and everyone gets it on their next sync. See **PATCH-PACKS.md**.
 
 ## Main controls
 
