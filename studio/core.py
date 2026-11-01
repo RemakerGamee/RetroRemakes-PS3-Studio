@@ -1168,10 +1168,19 @@ class Studio:
                 # when several compile at once, especially beside another build.
                 # Ninja keeps every finished object, so resume one at a time.
                 log = runner.log_dir / runner.records[-1]["log"]
+                oom_retry_ok = False
                 if jobs > 1 and compiler_ran_out_of_memory(log):
                     emit(f"Compiler ran out of memory with {jobs} parallel jobs; resuming one file at a time (finished files are kept).")
-                    runner.run("cmake-build-1job", ["cmake", "--build", attempt / "build", "--parallel", "1"], cwd=port)
-                else:
+                    try:
+                        runner.run("cmake-build-1job", ["cmake", "--build", attempt / "build", "--parallel", "1"], cwd=port)
+                        oom_retry_ok = True
+                    except RuntimeError:
+                        # Still out of memory one file at a time (another build is
+                        # using the RAM): fall through and rebuild the failing
+                        # file(s) with lower optimisation, which needs far less.
+                        log = runner.log_dir / runner.records[-1]["log"]
+                        jobs = 1
+                if not oom_retry_ok:
                     # The compiler itself can crash on one giant lifted function at full
                     # optimisation. Rebuild only the crashing files with lower optimisation.
                     level_by_round = ("/O1", "/Od")

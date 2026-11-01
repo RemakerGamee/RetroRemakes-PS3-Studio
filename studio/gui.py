@@ -436,6 +436,7 @@ class App(tk.Tk):
         self.button(row, "Save settings", self.save_settings, True)
         self.button(row, "Install backend + Python dependencies", self.install)
         self.button(row, "Check environment", self.doctor)
+        self.button(row, "Install everything needed", self.install_requirements)
         ttk.Label(f, text="Windows: Python 3.11+, Git, CMake, Ninja, Visual Studio C++ Build Tools with Clang tools. "
                   "See REQUIREMENTS.md for everything you need to install. START-STUDIO.bat loads the Visual Studio build environment when available. Setup downloads a pinned ps3recomp checkout "
                   "and installs its Python requirements into an isolated environment. Existing checkouts are preserved.",
@@ -444,6 +445,14 @@ class App(tk.Tk):
         ttk.Label(f, text="Studio updates are available in the Online updates tab and apply on restart. "
                   "Backend updates use a separate checkout so game builds retain their recorded tool revision.", wraplength=850).pack(anchor="w", pady=6)
         self.button(f, "Backend releases", lambda: webbrowser.open("https://github.com/sp00nznet/ps3recomp/releases"))
+
+    def install_requirements(self):
+        script=ROOT/'Install-Requirements.bat'
+        if os.name!='nt' or not script.is_file():
+            messagebox.showinfo('Install requirements','Run Install-Requirements.bat on Windows, or see REQUIREMENTS.md.');return
+        if messagebox.askyesno('Install requirements','This opens a window that installs Python, Git, CMake, Ninja and the Visual Studio Build Tools '
+                               'from their official sources. Programs you already have are skipped. Continue?'):
+            subprocess.Popen(['cmd','/c','start','',str(script)],cwd=ROOT)
 
     def fulton_tab(self):
         from . import fulton
@@ -535,6 +544,7 @@ class App(tk.Tk):
         self.check_update_button=self.button(row,'Check for updates',self.check_updates,True)
         self.download_update_button=self.button(row,'Download update',self.download_update)
         self.download_update_button.configure(state='disabled')
+        self.zip_update_button=self.button(row,'Install update from ZIP…',self.install_update_zip)
         self.restart_update_button=self.button(row,'Restart to apply',self.restart_for_update)
         self.restart_update_button.configure(state='normal' if (ROOT/'.studio-updates/pending.json').exists() else 'disabled')
         ttk.Label(f,text='Updates download in the background and are verified before installation. Restart after your current work finishes. '
@@ -579,6 +589,24 @@ class App(tk.Tk):
             try:
                 stage(ROOT,release)
                 self.events.put(('update_staged',release['version']))
+            except Exception as exc:
+                self.events.put(('update_error',str(exc)))
+        threading.Thread(target=work,daemon=True).start()
+
+    def install_update_zip(self):
+        if self.busy or self.update_busy:
+            return
+        path=filedialog.askopenfilename(title='Choose the PS3 Studio update ZIP you downloaded',filetypes=[('ZIP files','*.zip')])
+        if not path:
+            return
+        from .updater import stage_local
+        self.update_busy=True
+        self.check_update_button.configure(state='disabled')
+        self.update_status.set('Checking the update ZIP…')
+        def work():
+            try:
+                pending=stage_local(ROOT,path)
+                self.events.put(('update_staged',pending['manifest']['version']))
             except Exception as exc:
                 self.events.put(('update_error',str(exc)))
         threading.Thread(target=work,daemon=True).start()

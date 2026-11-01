@@ -10,17 +10,18 @@ This public edition ships **only RetroRemakes' own program code**. It contains n
 
 ## Quick start (Windows 10/11, 64-bit)
 
-1. Install everything in **REQUIREMENTS.md** (Python, Git, CMake, Ninja, Visual Studio Build Tools with Clang, RPCS3, the PS3 firmware, and optionally Fulton and Node.js).
-2. Extract this ZIP to a folder you can write to, for example `D:\RetroRemakes\PS3-Studio`. Keep your games in a different folder.
-3. Double-click **START-STUDIO.bat**.
-4. Open **Settings & setup**:
+1. Download the latest release from https://github.com/RemakerGamee/RetroRemakes-PS3-Studio/releases and extract it to a folder you can write to, for example `D:\RetroRemakes\PS3-Studio`. Keep your games in a different folder.
+2. Double-click **Install-Requirements.bat**. It installs Python, Git, CMake, Ninja and the Visual Studio Build Tools (with the right C++, Windows SDK and Clang parts) from their official sources, skipping anything you already have. Then **restart your PC**.
+3. Get **RPCS3** and the **PS3 firmware** yourself (the installer opens both download pages; details in REQUIREMENTS.md).
+4. Double-click **START-STUDIO.bat**.
+5. Open **Settings & setup**:
    - **RPCS3 executable**: browse to your `rpcs3.exe`.
    - **PS3 firmware folder**: the folder holding your `PS3UPDAT.PUP`. Install that same file in RPCS3 first (RPCS3 > File > Install Firmware) so your own `dev_flash` exists.
    - Click **Save settings**, then **Install backend + Python dependencies** (downloads the recompiler source from its public GitHub page to your PC), then **Check environment**. Fix anything it reports before continuing.
-5. Optional: open **Fulton sources** and press **Sync now** / **Pull selected sources** to fetch community PS3 projects from your own Fulton library. Nothing is pulled automatically unless you tick the automatic option.
-6. Add your game on **Game queue & build**: an extracted game folder that contains a **decrypted** `EBOOT.elf` (see "Decrypting your EBOOT" below), or the decrypted ELF itself.
-7. **Inspect** (F5), then **Attempt native build** (F6), then **Test native build**.
-8. If something fails, use the **Fix assistant** tab.
+6. Optional: open **Fulton sources** and press **Sync now** / **Pull selected sources** to fetch community PS3 projects from your own Fulton library. Nothing is pulled automatically unless you tick the automatic option.
+7. Add your game on **Game queue & build**: an extracted game folder that contains a **decrypted** `EBOOT.elf` (see "Decrypting your EBOOT" below), or the decrypted ELF itself.
+8. **Inspect** (F5), then **Attempt native build** (F6), then **Test native build**.
+9. If something fails, use the **Fix assistant** tab.
 
 ## Decrypting your EBOOT
 
@@ -58,6 +59,17 @@ You can switch between the two modes at any time.
 - **Apply fixes to selected game / games**: applies RetroRemakes' built-in runtime fixes and rebuilds.
 - **Stop (Escape)**: cancels the active job and keeps its logs.
 - **Export diagnostics**: a ZIP of reports and logs. Check it for personal paths before sharing.
+
+## Updating
+
+- **Automatic:** open **Online updates** and press **Check for updates**. The Studio finds the newest GitHub release, downloads and verifies it, and installs it when you restart.
+- **By hand:** download the update ZIP from the releases page, open **Online updates**, press **Install update from ZIP…** and pick the file. It is checked the same way and installed on restart.
+
+Updates only replace program files. Your `workspace` folder is never touched, and the old program files are backed up first.
+
+## Problems and questions
+
+Open an issue at https://github.com/RemakerGamee/RetroRemakes-PS3-Studio/issues. Leave out personal paths, and never attach game files.
 
 ## Where your data lives
 

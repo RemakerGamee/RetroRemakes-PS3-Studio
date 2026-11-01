@@ -31,7 +31,7 @@ from pathlib import Path, PurePosixPath
 
 from . import release_package as rp
 
-SITE = "https://retroremakes.invalid"  # RetroRemakes site address for port updates and support
+SITE = "https://github.com/RemakerGamee/RetroRemakes-PS3-Studio"
 MANIFEST_KIND = "retroremakes-port-update"
 MAX_PACKAGE = 64 * 1024 * 1024
 PORT_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,62}$")
@@ -50,11 +50,11 @@ def vtuple(v):
 
 
 def default_support_url(port_id):
-    return f"{SITE}/support?port={port_id}"
+    return f"{SITE}/issues"
 
 
 def manifest_url(port_id):
-    return f"{SITE}/updates/ports/{port_id}.json"
+    return f"{SITE}/releases/latest/download/port-{port_id}.json"
 
 
 # ------------------------------------------------------------- port.json
@@ -233,7 +233,7 @@ def build_update(port_id, version, source_dir, out_dir, title_ids=(), notes="", 
             z.writestr(zi, f.read_bytes())
         z.writestr("update-info.json", json.dumps({"port_id": port_id, "version": version, "notes": notes}, indent=2))
     blob = zpath.read_bytes()
-    base = (base_url or f"{SITE}/downloads/ports/{port_id}").rstrip("/")
+    base = (base_url or f"{SITE}/releases/latest/download").rstrip("/")
     manifest = {"schema": 1, "kind": MANIFEST_KIND, "port_id": port_id, "title_ids": list(title_ids),
                 "version": version, "url": f"{base}/{name}", "size": len(blob),
                 "sha256": hashlib.sha256(blob).hexdigest(), "min_installer": min_installer,

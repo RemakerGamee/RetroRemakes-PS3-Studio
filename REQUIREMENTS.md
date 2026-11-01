@@ -1,6 +1,10 @@
 # What you need - RetroRemakes PS3 Studio (Public Edition)
 
-RetroRemakes PS3 Studio is a RetroRemakes product. This edition ships only RetroRemakes' program code. **You must provide everything below yourself.** Install them in this order.
+RetroRemakes PS3 Studio is a RetroRemakes product. This edition ships only RetroRemakes' program code.
+
+> **Easiest way:** double-click **Install-Requirements.bat** (or press **Install everything needed** in Settings & setup). It installs every program in section 2, plus Node.js if you want it, from their official sources using Windows' built-in installer (winget), then opens the RPCS3 and firmware download pages. Restart your PC afterwards. The tables below are for checking, or for installing by hand.
+
+You still provide RPCS3, the firmware and your games yourself (section 3).
 
 ## 1. Computer
 

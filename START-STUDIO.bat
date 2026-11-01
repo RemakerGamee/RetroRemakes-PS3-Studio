@@ -1,6 +1,4 @@
 @echo off
-rem RetroRemakes PS3 Studio
-rem Copyright (c) 2026 RetroRemakes. All rights reserved.
 setlocal
 cd /d "%~dp0"
 rem Load MSVC headers, libraries and optional Clang tools when VS is installed.
@@ -24,6 +22,9 @@ python "%~dp0bootstrap.py"
 if errorlevel 1 pause
 exit /b
 :missing
-echo Install Python 3.11+ with Tcl/Tk, then reopen this launcher.
+echo Run Install-Requirements.bat to install everything PS3 Studio needs, then reopen this launcher.
+rem RetroRemakes PS3 Studio
+rem Copyright (c) 2026 RetroRemakes. All rights reserved.
+echo Or install Python 3.11+ with Tcl/Tk yourself.
 echo https://www.python.org/downloads/windows/
 pause

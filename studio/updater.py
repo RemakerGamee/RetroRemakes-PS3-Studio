@@ -14,10 +14,11 @@ import zipfile
 from . import VERSION
 
 APP_ID = 'retroremakes-ps3-studio'
-CHANNEL_URL = ''  # RetroRemakes sets this when the public update channel is published
+REPO_URL = 'https://github.com/RemakerGamee/RetroRemakes-PS3-Studio'
+CHANNEL_URL = REPO_URL + '/releases/latest/download/ps3-studio.json'
 MAX_PACKAGE = 20 * 1024 * 1024
 TOP_FILES = {'README.md','RESEARCH.md','REQUIREMENTS.md','LICENSE.txt','LICENSE-GPL-2.0.txt','NOTICE.md','START-STUDIO.bat',
-             'bootstrap.py','update_engine.py','tool-catalog.json','ONLINE-UPDATES.md'}
+             'bootstrap.py','update_engine.py','tool-catalog.json','ONLINE-UPDATES.md','Install-Requirements.bat'}
 
 
 def version(value):
@@ -62,7 +63,7 @@ def validate_manifest(data):
 
 def check():
     if not CHANNEL_URL:
-        raise ValueError('No update channel is set for this release yet. Download new versions from the RetroRemakes release page.')
+        raise ValueError('No update channel is set. Download new versions from ' + REPO_URL + '/releases')
     data = validate_manifest(json.loads(fetch(CHANNEL_URL, 128 * 1024)))
     return data, version(data['version']) > version(VERSION)
 
@@ -127,3 +128,39 @@ def stage(app_root, manifest):
         return pending
     finally:
         temp.unlink(missing_ok=True)
+
+
+def stage_local(app_root, zip_path):
+    """Check an update ZIP the player downloaded and queue it for the next restart."""
+    path = Path(zip_path)
+    size = path.stat().st_size
+    if not 1 <= size <= MAX_PACKAGE:
+        raise ValueError('This file is not a PS3 Studio update (wrong size)')
+    try:
+        with zipfile.ZipFile(path) as z:
+            roots = {PurePosixPath(i.filename).parts[0] for i in z.infolist() if PurePosixPath(i.filename).parts}
+            if len(roots) != 1:
+                raise ValueError('This ZIP is not a PS3 Studio update')
+            root = roots.pop()
+            init = z.read(root + '/studio/__init__.py').decode('utf-8')
+    except (zipfile.BadZipFile, KeyError):
+        raise ValueError('This ZIP is not a PS3 Studio update')
+    found = re.search(r'VERSION\s*=\s*["\'](\d+\.\d+\.\d+)["\']', init)
+    if not found:
+        raise ValueError('This update has no version number')
+    data = path.read_bytes()
+    manifest = {'schema': 1, 'app_id': APP_ID, 'version': found.group(1), 'root': root, 'size': size,
+                'sha256': hashlib.sha256(data).hexdigest(), 'url': REPO_URL + '/releases'}
+    if version(manifest['version']) <= version(VERSION):
+        raise ValueError(f"This ZIP is version {manifest['version']}, and version {VERSION} or newer is already installed")
+    files = validate_package(path, manifest)
+    folder = Path(app_root).resolve() / '.studio-updates'
+    folder.mkdir(exist_ok=True)
+    temp = folder / 'local.tmp'
+    temp.write_bytes(data)
+    temp.replace(folder / 'pending.zip')
+    pending = {'manifest': manifest, 'files': files}
+    tmp = folder / 'pending.tmp'
+    tmp.write_text(json.dumps(pending, indent=2), encoding='utf-8')
+    tmp.replace(folder / 'pending.json')
+    return pending
